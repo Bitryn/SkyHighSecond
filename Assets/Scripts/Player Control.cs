@@ -82,7 +82,7 @@ public class PlayerControl : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext context)
     {
-        if (!InJump)
+        if (!InJump &&  GlobVar.instance.PointerFree )
         {
 
         Debug.Log("JUMP??");

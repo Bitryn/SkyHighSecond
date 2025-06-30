@@ -6,7 +6,7 @@ public class GlobVar : MonoBehaviour
 
     public float score = 102.0f;
     public Vector2 PlayerPos = new Vector2(0,0);
-    public bool PointerFree; // is pointer blocked by the wall
+    public bool PointerFree = true; // is pointer blocked by the wall
     public float MouseAngle = 0f;
     private void Awake()
     {
