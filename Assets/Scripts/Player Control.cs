@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour
     
     public bool InJump = false ;
 
-    private bool isGrounded;
+    //private bool isGrounded;
     
     private Rigidbody2D rb;
     public GameObject mPointer;
@@ -58,7 +58,9 @@ public class PlayerControl : MonoBehaviour
             Jump();
         }
 */
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        //Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) ;
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+        mousePos += new Vector2(-250.0f, -200.0f);
         mouseAngle = Vector2.Angle(mousePos, ZeroV);
         Debug.DrawLine(Vector2.right, (mousePos * new Vector2(5.0f,5.0f) ), Color.magenta);
         if(mousePos.y > 0){
@@ -70,7 +72,10 @@ public class PlayerControl : MonoBehaviour
         //Debug.Log(mousePos);
         //Debug.Log(mouseAngle);
         //Debug.Log(      Rotate( BaseJumpForce, mouseAngle*1f)    );
-        //Speed = mousePos;
+        //Speed = mousePos;    m_LocalPosition
+
+        GlobVar.instance.MouseAngle = mouseAngle;
+        GlobVar.instance.PlayerPos = transform.position;
         
         rb.linearVelocity = Speed;
     }
@@ -124,7 +129,7 @@ public class PlayerControl : MonoBehaviour
         // Check if the player is on the ground
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
+            //isGrounded = true;
             Debug.Log("Touched the Ground");
             if (InJump){ 
                 InJump = false;
@@ -142,7 +147,7 @@ public class PlayerControl : MonoBehaviour
         // Check if the player is no longer on the ground
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = false;
+            //isGrounded = false;
         }
     }
 
